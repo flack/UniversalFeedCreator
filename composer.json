@@ -1,7 +1,7 @@
 {
-    "name": "bitfolge/universalfeedcreator",
+    "name": "openpsa/universalfeedcreator",
     "type": "library",
-    "description": "Content-oriented Model-View-Controller library for PHP and the Midgard Content Repository",
+    "description": "RSS and Atom feed generator by Kai Blankenhorn",
     "keywords": ["rss", "atom", "pie", "opml", "gpx", "georss"],
     "homepage": "http://midgard-project.org/midcom/",
     "license": "LGPL",
