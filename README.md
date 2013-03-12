@@ -3,14 +3,7 @@ UniversalFeedCreator
 
 RSS and Atom feed generator by Kai Blankenhorn, slightly cleaned up and packaged for Composer.
 
-originally (c) Kai Blankenhorn
-www.bitfolge.de
-kaib@bitfolge.de
-v1.3 work by Scott Reynen (scott@randomchaos.com) and Kai Blankenhorn
-v1.5 OPML support by Dirk Clemens
-
-
-** GENERAL USAGE
+## GENERAL USAGE
 
 ```php
 require 'vendor/autoload.php';
@@ -66,6 +59,7 @@ echo $rss->saveFeed("RSS1.0", "news/feed.xml");
 
 ## Changelog:
 
+```
 v1.8          12-03-13
     packaged for Composer & cleaned up slightly
 
@@ -152,3 +146,13 @@ v1.1    06-29-03
 
 v1.0    06-24-03
     initial release
+```
+
+## CREDITS
+```
+originally (c) Kai Blankenhorn
+www.bitfolge.de
+kaib@bitfolge.de
+v1.3 work by Scott Reynen (scott@randomchaos.com) and Kai Blankenhorn
+v1.5 OPML support by Dirk Clemens
+```
