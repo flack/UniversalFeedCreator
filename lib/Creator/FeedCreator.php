@@ -193,24 +193,24 @@ abstract class FeedCreator extends HtmlDescribable {
         // attention, heavily-commented-out-area
 
         // maybe use this in addition to file time checking
-        //Header("Expires: ".date("r",time()+$this->_timeout));
+        //header("Expires: ".date("r",time()+$this->_timeout));
 
         /* no caching at all, doesn't seem to work as good:
-         Header("Cache-Control: no-cache");
-        Header("Pragma: no-cache");
+         header("Cache-Control: no-cache");
+        header("Pragma: no-cache");
         */
 
         // HTTP redirect, some feed readers' simple HTTP implementations don't follow it
-        //Header("Location: ".$filename);
+        //header("Location: ".$filename);
 
-        Header("Content-Type: ".$this->contentType."; charset=".$this->encoding."; filename=".basename($filename));
+        header("Content-Type: ".$this->contentType."; charset=".$this->encoding."; filename=".basename($filename));
         if (preg_match("/\.(kml|gpx)$/",$filename)) {
-            Header("Content-Disposition: attachment; filename=".basename($filename));
+            header("Content-Disposition: attachment; filename=".basename($filename));
         } else {
-            Header("Content-Disposition: inline; filename=".basename($filename));
+            header("Content-Disposition: inline; filename=".basename($filename));
         }
         readfile($filename, "r");
-        _midcom_stop_request();
+        exit();
     }
 
     /**
