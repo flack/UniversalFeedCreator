@@ -3,7 +3,6 @@
     "type": "library",
     "description": "RSS and Atom feed generator by Kai Blankenhorn",
     "keywords": ["rss", "atom", "pie", "opml", "gpx", "georss"],
-    "homepage": "http://midgard-project.org/midcom/",
     "license": "LGPL",
     "authors": [
         {
