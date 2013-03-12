@@ -187,9 +187,8 @@ abstract class FeedCreator extends HtmlDescribable {
 
     /**
      * @since 1.4
-     * @access private
      */
-    function _redirect($filename) {
+    private function _redirect($filename) {
         // attention, heavily-commented-out-area
 
         // maybe use this in addition to file time checking
