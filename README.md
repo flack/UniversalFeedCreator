@@ -3,13 +3,17 @@ UniversalFeedCreator
 
 RSS and Atom feed generator by Kai Blankenhorn, slightly cleaned up and packaged for Composer.
 
-## GENERAL USAGE
+Supported formats: RSS0.91, RSS1.0, RSS2.0, PIE0.1 (deprecated), MBOX, OPML, ATOM, ATOM0.3,
+HTML, JS, PHP
+
+
+## General Usage
 
 ```php
 require 'vendor/autoload.php';
 
 $rss = new UniversalFeedCreator();
-$rss->useCached(); // use cached version if age<1 hour
+$rss->useCached(); // use cached version if age < 1 hour
 $rss->title = "PHP news";
 $rss->description = "daily news from the PHP scripting world";
 
@@ -18,7 +22,7 @@ $rss->descriptionTruncSize = 500;
 $rss->descriptionHtmlSyndicated = true;
 
 $rss->link = "http://www.dailyphp.net/news";
-$rss->syndicationURL = "http://www.dailyphp.net/".$_SERVER["PHP_SELF"];
+$rss->syndicationURL = "http://www.dailyphp.net/" . $_SERVER["PHP_SELF"];
 
 $image = new FeedImage();
 $image->title = "dailyphp.net logo";
@@ -52,8 +56,6 @@ while ($data = mysql_fetch_object($res)) {
     $rss->addItem($item);
 }
 
-// valid format strings are: RSS0.91, RSS1.0, RSS2.0, PIE0.1 (deprecated),
-// MBOX, OPML, ATOM, ATOM0.3, HTML, JS, PHP
 echo $rss->saveFeed("RSS1.0", "news/feed.xml");
 ```
 
@@ -93,11 +95,11 @@ v1.7    07-18-04
     added a switch to select an external stylesheet (thanks to Pascal Van Hecke)
     changed default content-type to application/xml
     added character encoding setting
-    fixed numerous smaller bugs (thanks to S�ren Fuhrmann of golem.de)
+    fixed numerous smaller bugs (thanks to Sören Fuhrmann of golem.de)
     improved changing ATOM versions handling (thanks to August Trometer)
-    improved the UniversalFeedCreator's useCached method (thanks to S�ren Fuhrmann of golem.de)
-    added charset output in HTTP headers (thanks to S�ren Fuhrmann of golem.de)
-    added Slashdot namespace to RSS 1.0 (thanks to S�ren Fuhrmann of golem.de)
+    improved the UniversalFeedCreator's useCached method (thanks to Sören Fuhrmann of golem.de)
+    added charset output in HTTP headers (thanks to Sören Fuhrmann of golem.de)
+    added Slashdot namespace to RSS 1.0 (thanks to Sören Fuhrmann of golem.de)
 
 v1.6    05-10-04
     added stylesheet to RSS 1.0 feeds
@@ -115,7 +117,7 @@ v1.6 beta    02-28-04
     considered beta due to some internal changes
 
 v1.5.1    01-27-04
-    fixed some RSS 1.0 glitches (thanks to St�phane Vanpoperynghe)
+    fixed some RSS 1.0 glitches (thanks to Stéphane Vanpoperynghe)
     fixed some inconsistencies between documentation and code (thanks to Timothy Martin)
 
 v1.5    01-06-04
@@ -148,7 +150,7 @@ v1.0    06-24-03
     initial release
 ```
 
-## CREDITS
+## Credits
 ```
 originally (c) Kai Blankenhorn
 www.bitfolge.de
