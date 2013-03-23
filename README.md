@@ -42,8 +42,8 @@ while ($data = mysql_fetch_object($res)) {
     $item->description = $data->short;
 
     //optional
-    item->descriptionTruncSize = 500;
-    item->descriptionHtmlSyndicated = true;
+    $item->descriptionTruncSize = 500;
+    $item->descriptionHtmlSyndicated = true;
 
     $item->date = $data->newsdate;
     $item->source = "http://www.dailyphp.net";
