@@ -52,6 +52,5 @@ class FeedHtmlField {
         }
         return $result;
     }
-
 }
 ?>

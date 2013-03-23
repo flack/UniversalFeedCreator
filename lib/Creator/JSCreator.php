@@ -37,6 +37,5 @@ class JSCreator extends HTMLCreator {
         $fileInfo = pathinfo($_SERVER["PHP_SELF"]);
         return substr($fileInfo["basename"],0,-(strlen($fileInfo["extension"])+1)).".js";
     }
-
 }
 ?>

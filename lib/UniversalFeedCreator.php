@@ -152,6 +152,5 @@ class UniversalFeedCreator extends FeedCreator {
         $this->_setFormat($format);
         $this->_feed->useCached($filename, $timeout);
     }
-
 }
 ?>

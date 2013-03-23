@@ -256,6 +256,5 @@ abstract class FeedCreator extends HtmlDescribable {
             echo "<br /><b>Error creating feed file, please check write permissions.</b><br />";
         }
     }
-
 }
 ?>

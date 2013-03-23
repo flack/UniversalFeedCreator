@@ -27,6 +27,5 @@ class HtmlDescribable {
         $descriptionField->truncSize = $this->descriptionTruncSize;
         return $descriptionField->output();
     }
-
 }
 ?>
