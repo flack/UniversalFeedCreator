@@ -157,11 +157,10 @@ abstract class FeedCreator extends HtmlDescribable {
 
     /**
      * Builds the feed's text.
-     * @abstract
+     * 
      * @return    string    the feed's complete text
      */
-    function createFeed() {
-    }
+    abstract function createFeed();
 
     /**
      * Generate a filename for the feed cache file. The result will be $_SERVER["PHP_SELF"] with the extension changed to .xml.
