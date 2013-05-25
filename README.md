@@ -6,6 +6,7 @@ RSS and Atom feed generator by Kai Blankenhorn, slightly cleaned up and packaged
 Supported formats: RSS0.91, RSS1.0, RSS2.0, PIE0.1 (deprecated), MBOX, OPML, ATOM, ATOM0.3,
 HTML, JS, PHP
 
+[![Build Status](https://travis-ci.org/flack/UniversalFeedCreator.png?branch=master)](https://travis-ci.org/flack/UniversalFeedCreator)
 
 ## General Usage
 
