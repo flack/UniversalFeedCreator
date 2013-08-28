@@ -43,7 +43,6 @@ class MBOXCreator extends FeedCreator {
         return trim($output);
     }
 
-
     /**
      * Builds the MBOX contents.
      * @return    string    the feed's complete text

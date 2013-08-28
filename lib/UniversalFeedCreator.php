@@ -118,8 +118,6 @@ class UniversalFeedCreator extends FeedCreator {
         return $this->_feed->createFeed();
     }
 
-
-
     /**
      * Saves this feed as a file on the local disk. After the file is saved, an HTTP redirect
      * header may be sent to redirect the use to the newly created file.
@@ -134,7 +132,6 @@ class UniversalFeedCreator extends FeedCreator {
         $this->_setFormat($format);
         $this->_feed->saveFeed($filename, $displayContents);
     }
-
 
     /**
      * Turns on caching and checks if there is a recent version of this feed in the cache.

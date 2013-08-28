@@ -51,14 +51,12 @@ class AtomCreator10 extends FeedCreator {
         }
         if ($this->category!="") {
 
-
             $feed.= "    <category term=\"" . htmlspecialchars($this->category) . "\" />\n";
         }
         if ($this->copyright!="") {
             $feed.= "    <rights>".FeedCreator::iTrunc(htmlspecialchars($this->copyright),100)."</rights>\n";
         }
         $feed.= "    <generator>".$this->version()."</generator>\n";
-
 
         $feed.= "    <link rel=\"self\" type=\"application/atom+xml\" href=\"". htmlspecialchars($this->syndicationURL). "\" />\n";
         $feed.= $this->_createAdditionalElements($this->additionalElements, "    ");
@@ -72,7 +70,6 @@ class AtomCreator10 extends FeedCreator {
             $itemDate = new FeedDate($this->items[$i]->date);
             $feed.= "        <published>".htmlspecialchars($itemDate->iso8601())."</published>\n";
             $feed.= "        <updated>".htmlspecialchars($itemDate->iso8601())."</updated>\n";
-
 
             $tempguid = $this->items[$i]->link;
             if ($this->items[$i]->guid!="") {
@@ -107,13 +104,11 @@ class AtomCreator10 extends FeedCreator {
 
             if ($this->items[$i]->description!="") {
 
-
                 /*
                  * ATOM should have at least summary tag, however this implementation may be inaccurate
                 */
                 $tempdesc = $this->items[$i]->getDescription();
                 $temptype="";
-
 
                 if ($this->items[$i]->descriptionHtmlSyndicated){
                     $temptype=" type=\"html\"";
@@ -124,7 +119,6 @@ class AtomCreator10 extends FeedCreator {
                 if (empty($this->items[$i]->descriptionTruncSize)) {
                     $feed.= "        <content". $temptype . ">". $tempdesc ."</content>\n";
                 }
-
 
                 $feed.= "        <summary". $temptype . ">". $tempdesc ."</summary>\n";
             } else {

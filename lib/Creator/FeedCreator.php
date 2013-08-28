@@ -36,7 +36,6 @@ abstract class FeedCreator extends HtmlDescribable {
      * Generator string
      *
      */
-
     var $generator = "info@mypapit.net";
 
     /**
@@ -46,13 +45,11 @@ abstract class FeedCreator extends HtmlDescribable {
      */
     var $contentType = "application/xml";
 
-
     /**
      * This feed's character encoding.
      * @since 1.6.1
      */
     var $encoding = "UTF-8"; //"ISO-8859-1";
-
 
     /**
      * Any additional elements to include as an associated array. All $key => $value pairs
@@ -63,7 +60,6 @@ abstract class FeedCreator extends HtmlDescribable {
      * the FeedCreator class used.
      */
     var $additionalElements = Array();
-
 
     /**
      * Adds a FeedItem to the feed.
@@ -119,7 +115,6 @@ abstract class FeedCreator extends HtmlDescribable {
 
     }
 
-
     /**
      * Creates a comment indicating the generator of this feed.
      * The format of this comment seems to be recognized by
@@ -128,7 +123,6 @@ abstract class FeedCreator extends HtmlDescribable {
     function _createGeneratorComment() {
         return "<!-- generator=\"".FEEDCREATOR_VERSION."\" -->\n";
     }
-
 
     /**
      * Creates a string containing all additional elements specified in
@@ -153,7 +147,6 @@ abstract class FeedCreator extends HtmlDescribable {
         if (!empty($this->xslStyleSheet)) $xml .= "<?xml-stylesheet href=\"".$this->xslStyleSheet."\" type=\"text/xsl\"?>\n";
         return $xml;
     }
-
 
     /**
      * Builds the feed's text.
@@ -182,7 +175,6 @@ abstract class FeedCreator extends HtmlDescribable {
         $fileInfo = pathinfo($_SERVER["PHP_SELF"]);
         return substr($fileInfo["basename"],0,-(strlen($fileInfo["extension"])+1)).".xml";
     }
-
 
     /**
      * @since 1.4
@@ -230,7 +222,6 @@ abstract class FeedCreator extends HtmlDescribable {
             $this->_redirect($filename);
         }
     }
-
 
     /**
      * Saves this feed as a file on the local disk. After the file is saved, a redirect

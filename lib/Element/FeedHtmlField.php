@@ -30,7 +30,6 @@ class FeedHtmlField {
         }
     }
 
-
     /**
      * Creates the right output, depending on $truncSize, $syndicateHtml properties.
      * @return string    the formatted field
