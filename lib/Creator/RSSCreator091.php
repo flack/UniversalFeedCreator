@@ -63,7 +63,7 @@ class RSSCreator091 extends FeedCreator {
         $feed.= "        <description>".$this->getDescription()."</description>\n";
         $feed.= "        <link>".$this->link."</link>\n";
         $now = new FeedDate();
-        $feed.= "        <lastBuildDate>".htmlspecialchars($now->rfc822())."</lastBuildDate>\n";
+        $feed.= "        <lastBuildDate>".htmlspecialchars($this->lastBuildDate ?: $now->rfc822())."</lastBuildDate>\n";
         $feed.= "        <generator>".FEEDCREATOR_VERSION."</generator>\n";
 
         if ($this->image!=null) {
