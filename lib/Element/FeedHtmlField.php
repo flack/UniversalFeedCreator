@@ -22,9 +22,10 @@ class FeedHtmlField {
 
     /**
      * Creates a new instance of FeedHtmlField.
+     * 
      * @param  $string: if given, sets the rawFieldContent property
      */
-    function FeedHtmlField($parFieldContent) {
+    public function __construct($parFieldContent) {
         if ($parFieldContent) {
             $this->rawFieldContent = $parFieldContent;
         }
@@ -32,9 +33,10 @@ class FeedHtmlField {
 
     /**
      * Creates the right output, depending on $truncSize, $syndicateHtml properties.
+     * 
      * @return string    the formatted field
      */
-    function output() {
+    public function output() {
         // when field available and syndicated in html we assume
         // - valid html in $rawFieldContent and we enclose in CDATA tags
         // - no truncation (truncating risks producing invalid html)
