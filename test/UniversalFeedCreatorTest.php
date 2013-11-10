@@ -21,6 +21,18 @@ class UniverslFeedCreatorTest extends PHPUnit_Framework_TestCase
         $this->assertEquals($expected->channel->generator, $actual->channel->generator);
     }
 
+    public function test_createFeed()
+    {
+        $creator = new UniversalFeedCreator;
+        $creator->description = 'Feed Description';
+        $creator->addItem(new FeedItem());
+        $feed = $creator->createFeed('RSS2.0');
+
+        $expected = simplexml_load_file(__DIR__ . DIRECTORY_SEPARATOR . '__files'  . DIRECTORY_SEPARATOR . 'rss091.xml');
+        $actual = simplexml_load_string($feed);
+        $this->assertEquals($expected->channel->description, $actual->channel->description);
+    }
+
     public function provider_createFeed()
     {
         return array

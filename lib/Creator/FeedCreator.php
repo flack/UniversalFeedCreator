@@ -83,12 +83,11 @@ abstract class FeedCreator extends HtmlDescribable {
      * If the string is truncated, " ..." is appended.
      * If the string is already shorter than $length, it is returned unchanged.
      *
-     * @static
      * @param string    string A string to be truncated.
      * @param int        length the maximum length the string should be truncated to
      * @return string    the truncated string
      */
-    function iTrunc($string, $length) {
+    public static function iTrunc($string, $length) {
         if (strlen($string)<=$length) {
             return $string;
         }
@@ -150,7 +149,7 @@ abstract class FeedCreator extends HtmlDescribable {
 
     /**
      * Builds the feed's text.
-     * 
+     *
      * @return    string    the feed's complete text
      */
     abstract function createFeed();
