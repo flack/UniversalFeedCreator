@@ -28,10 +28,11 @@ class AtomCreator10 extends FeedCreator {
         $feed.= $this->_createGeneratorComment();
         $feed.= $this->_createStylesheetReferences();
         $feed.= "<feed xmlns=\"http://www.w3.org/2005/Atom\"";
-        if ($this->items[0]->lat!="") {
+        if (!empty($this->items[0]->lat))
+        {
             $feed.= " xmlns:georss=\"http://www.georss.org/georss\"\n";
         }
-        if ($this->language!="") {
+        if ($this->language!=""){
             $feed.= " xml:lang=\"".$this->language."\"";
         }
         $feed.= ">\n";

@@ -25,10 +25,14 @@ class RSSCreator10 extends FeedCreator {
         $feed.= "    xmlns=\"http://purl.org/rss/1.0/\"\n";
         $feed.= "    xmlns:rdf=\"http://www.w3.org/1999/02/22-rdf-syntax-ns#\"\n";
         $feed.= "    xmlns:slash=\"http://purl.org/rss/1.0/modules/slash/\"\n";
-        if ($this->items[0]->thumb!="")
+        if (!empty($this->items[0]->thumb))
+        {
             $feed.= "    xmlns:photo=\"http://www.pheed.com/pheed/\"\n";
-        if ($this->items[0]->lat!="")
+        }
+        if (!empty($this->items[0]->lat))
+        {
             $feed.= "    xmlns:georss=\"http://www.georss.org/georss\"\n";
+        }
         $feed.= "    xmlns:dc=\"http://purl.org/dc/elements/1.1/\">\n";
         $feed.= "    <channel rdf:about=\"".$this->syndicationURL."\">\n";
         $feed.= "        <title>".htmlspecialchars($this->title)."</title>\n";
