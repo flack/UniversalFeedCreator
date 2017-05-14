@@ -178,7 +178,10 @@ abstract class FeedCreator extends HtmlDescribable {
     }
 
     /**
+     * Send given file to Browser
+     *
      * @since 1.4
+     * @param string $filename
      */
     protected function _redirect($filename) {
         // attention, heavily-commented-out-area
