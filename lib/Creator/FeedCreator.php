@@ -198,7 +198,7 @@ abstract class FeedCreator extends HtmlDescribable {
         //header("Location: ".$filename);
 
         header("Content-Type: ".$this->contentType."; charset=".$this->encoding."; filename=".basename($filename));
-        if (preg_match("/\.(kml|gpx)$/",$filename)) {
+        if (preg_match('/\.(kml|gpx)$/',$filename)) {
             header("Content-Disposition: attachment; filename=".basename($filename));
         } else {
             header("Content-Disposition: inline; filename=".basename($filename));
