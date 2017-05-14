@@ -71,7 +71,7 @@ class RSSCreator091 extends FeedCreator {
                 $feed.= "            <height>".$this->image->height."</height>\n";
             }
             if ($this->image->description!="") {
-                $feed.= "            <description>".$this->image->getDescription()."</description>\n";
+                $feed.= "            <description>".htmlspecialchars($this->image->description)."</description>\n";
             }
             $feed.= "        </image>\n";
         }
