@@ -10,12 +10,12 @@ class FeedItem extends HtmlDescribable {
     /**
      * Mandatory attributes of an item.
      */
-    var $title, $description, $link;
+    public $title, $description, $link;
 
     /**
      * Optional attributes of an item.
      */
-    var $author, $authorEmail, $authorURL,$image, $category, $categoryScheme, $comments, $guid, $source, $creator, $contributor, $lat, $long, $thumb;
+    public $author, $authorEmail, $authorURL,$image, $category, $categoryScheme, $comments, $guid, $source, $creator, $contributor, $lat, $long, $thumb;
 
     /**
      * Publishing date of an item. May be in one of the following formats:
@@ -30,7 +30,7 @@ class FeedItem extends HtmlDescribable {
      *    Unix:
      *    1043082341
      */
-    var $date;
+    public $date;
 
     /**
      * Add <enclosure> element tag RSS 2.0, supported by ATOM 1.0 too
@@ -41,7 +41,7 @@ class FeedItem extends HtmlDescribable {
      * <enclosure length="17691" url="http://something.com/picture.jpg" type="image/jpeg" />
      *
      */
-    var $enclosure;
+    public $enclosure;
 
     /**
      * Any additional elements to include as an associated array. All $key => $value pairs
@@ -51,7 +51,7 @@ class FeedItem extends HtmlDescribable {
      * if $value contains markup. This may be abused to embed tags not implemented by
      * the FeedCreator class used.
      */
-    var $additionalElements = Array();
+    public $additionalElements = Array();
 
     // on hold
     // var $source;

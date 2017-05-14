@@ -9,12 +9,22 @@
  */
 class MBOXCreator extends FeedCreator {
 
-    function __construct() {
+    /**
+     * MBOXCreator constructor.
+     */
+    public function __construct() {
         $this->contentType = "text/plain";
         $this->encoding = "ISO-8859-15";
     }
 
-    function qp_enc($input = "", $line_max = 76) {
+    /**
+     * Quoted Printable encoding
+     *
+     * @param string $input
+     * @param int $line_max wrap lines after these number of characters
+     * @return string
+     */
+    protected function qp_enc($input = "", $line_max = 76) {
         $hex = array('0','1','2','3','4','5','6','7','8','9','A','B','C','D','E','F');
         $lines = preg_split("/(?:\r\n|\r|\n)/", $input);
         $eol = "\r\n";
@@ -45,9 +55,9 @@ class MBOXCreator extends FeedCreator {
 
     /**
      * Builds the MBOX contents.
-     * @return    string    the feed's complete text
+     * @inheritdoc
      */
-    function createFeed() {
+    public function createFeed() {
         for ($i=0;$i<count($this->items);$i++) {
             if ($this->items[$i]->author!="") {
                 $from = $this->items[$i]->author;
@@ -78,7 +88,7 @@ class MBOXCreator extends FeedCreator {
      * @since 1.4
      * @access private
      */
-    function _generateFilename() {
+    protected function _generateFilename() {
         $fileInfo = pathinfo($_SERVER["PHP_SELF"]);
         return substr($fileInfo["basename"],0,-(strlen($fileInfo["extension"])+1)).".mbox";
     }

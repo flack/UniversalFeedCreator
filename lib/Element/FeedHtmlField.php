@@ -12,13 +12,13 @@ class FeedHtmlField {
     /**
      * Mandatory attributes of a FeedHtmlField.
      */
-    var $rawFieldContent;
+    protected $rawFieldContent;
 
     /**
      * Optional attributes of a FeedHtmlField.
      *
      */
-    var $truncSize, $syndicateHtml;
+    public $truncSize, $syndicateHtml;
 
     /**
      * Creates a new instance of FeedHtmlField.

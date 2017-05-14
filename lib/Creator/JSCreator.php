@@ -7,14 +7,13 @@
  * @package de.bitfolge.feedcreator
  */
 class JSCreator extends HTMLCreator {
-    var $contentType = "text/javascript";
+    protected $contentType = "text/javascript";
 
     /**
      * writes the javascript
-     *
-     * @return    string    the scripts's complete text
+     * @inheritdoc
      */
-    function createFeed()
+    public function createFeed()
     {
         $feed = parent::createFeed();
         $feedArray = explode("\n",$feed);
@@ -33,7 +32,7 @@ class JSCreator extends HTMLCreator {
      * @since 1.4
      * @access private
      */
-    function _generateFilename() {
+    protected function _generateFilename() {
         $fileInfo = pathinfo($_SERVER["PHP_SELF"]);
         return substr($fileInfo["basename"],0,-(strlen($fileInfo["extension"])+1)).".js";
     }

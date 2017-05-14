@@ -19,9 +19,12 @@ define("FEEDCREATOR_VERSION", "FeedCreator 1.8");
  */
 class UniversalFeedCreator extends FeedCreator {
     /** @var  FeedCreator */
-    var $_feed;
+    protected $_feed;
 
-    function _setFormat($format) {
+    /**
+     * @param string $format
+     */
+    protected function _setFormat($format) {
         switch (strtoupper($format)) {
 
             case "BASE":
@@ -114,7 +117,7 @@ class UniversalFeedCreator extends FeedCreator {
      *            "PIE0.1", "mbox", "RSS0.91", "RSS1.0", "RSS2.0", "OPML", "ATOM0.3", "HTML", "JS"
      * @return    string    the contents of the feed.
      */
-    function createFeed($format = "RSS0.91") {
+    public function createFeed($format = "RSS0.91") {
         $this->_setFormat($format);
         return $this->_feed->createFeed();
     }
@@ -129,7 +132,7 @@ class UniversalFeedCreator extends FeedCreator {
      * @param    string    $filename    optional    the filename where a recent version of the feed is saved. If not specified, the filename is $_SERVER["PHP_SELF"] with the extension changed to .xml (see _generateFilename()).
      * @param    boolean    $displayContents    optional    send the content of the file or not. If true, the file will be sent in the body of the response.
      */
-    function saveFeed($format="RSS0.91", $filename="", $displayContents=true) {
+    public function saveFeed($format="RSS0.91", $filename="", $displayContents=true) {
         $this->_setFormat($format);
         $this->_feed->saveFeed($filename, $displayContents);
     }
@@ -146,7 +149,7 @@ class UniversalFeedCreator extends FeedCreator {
      * @param string $filename    optional the filename where a recent version of the feed is saved. If not specified, the filename is $_SERVER["PHP_SELF"] with the extension changed to .xml (see _generateFilename()).
      * @param int $timeout      optional the timeout in seconds before a cached version is refreshed (defaults to 3600 = 1 hour)
      */
-    function useCached($format="RSS0.91", $filename="", $timeout=3600) {
+    public function useCached($format="RSS0.91", $filename="", $timeout=3600) {
         $this->_setFormat($format);
         $this->_feed->useCached($filename, $timeout);
     }

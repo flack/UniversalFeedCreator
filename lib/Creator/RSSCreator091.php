@@ -9,13 +9,12 @@
  */
 class RSSCreator091 extends FeedCreator {
 
-    /**
-     * Stores this RSS feed's version number.
-     *
-     * @access private
-     */
-    var $RSSVersion;
+    /** @var string Stores this RSS feed's version number. */
+    protected $RSSVersion;
 
+    /**
+     * RSSCreator091 constructor.
+     */
     function __construct() {
         $this->_setRSSVersion("0.91");
         $this->contentType = "application/rss+xml";
@@ -23,20 +22,14 @@ class RSSCreator091 extends FeedCreator {
 
     /**
      * Sets this RSS feed's version number.
-     *
-     * @access private
+     * @param string $version
      */
-    function _setRSSVersion($version) {
+    protected function _setRSSVersion($version) {
         $this->RSSVersion = $version;
     }
 
-    /**
-     * Builds the RSS feed's text. The feed will be compliant to RDF Site Summary (RSS) 1.0.
-     * The feed will contain all items previously added in the same order.
-     *
-     * @return    string    the feed's complete text
-     */
-    function createFeed() {
+    /** @inheritdoc */
+    public function createFeed() {
         $feed = "<?xml version=\"1.0\" encoding=\"".$this->encoding."\"?>\n";
         $feed.= $this->_createGeneratorComment();
         $feed.= $this->_createStylesheetReferences();

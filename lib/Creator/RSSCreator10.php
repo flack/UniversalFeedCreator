@@ -9,12 +9,8 @@
  */
 class RSSCreator10 extends FeedCreator {
 
-    /**
-     * Builds the RSS feed's text. The feed will be compliant to RDF Site Summary (RSS) 1.0.
-     * The feed will contain all items previously added in the same order.
-     * @return    string    the feed's complete text
-     */
-    function createFeed() {
+    /** @inheritdoc */
+    public function createFeed() {
         $feed = "<?xml version=\"1.0\" encoding=\"".$this->encoding."\"?>\n";
         $feed.= $this->_createGeneratorComment();
         if (empty($this->cssStyleSheet)) {

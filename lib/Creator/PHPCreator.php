@@ -8,12 +8,16 @@
  */
 class PHPCreator extends FeedCreator {
 
-    function __construct() {
+    /**
+     * PHPCreator constructor.
+     */
+    public function __construct() {
         $this->contentType = "text/plain";
         $this->encoding = "utf-8";
     }
 
-    function createFeed() {
+    /** @inheritdoc */
+    public function createFeed() {
         $feed = "<?php\n";
         $feed.= "class FeedItem {}\n";
         $feed.= "  \$feedTitle='".addslashes(FeedCreator::iTrunc(htmlspecialchars($this->title),100))."';\n";

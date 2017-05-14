@@ -6,7 +6,7 @@
  * @package de.bitfolge.feedcreator
  */
 class FeedDate {
-    var $unix;
+    protected $unix;
 
     /**
      * Creates a new instance of FeedDate representing a given date.
@@ -14,7 +14,7 @@ class FeedDate {
      *
      * @param mixed $dateString optional the date this FeedDate will represent. If not specified, the current date and time is used.
      */
-    function __construct($dateString="") {
+    public function __construct($dateString="") {
         if ($dateString=="") $dateString = date("r");
 
         if (is_integer($dateString)) {
@@ -64,9 +64,9 @@ class FeedDate {
     /**
      * Gets the date stored in this FeedDate as an RFC 822 date.
      *
-     * @return a date in RFC 822 format
+     * @return string a date in RFC 822 format
      */
-    function rfc822() {
+    public function rfc822() {
         //return gmdate("r",$this->unix);
         $date = gmdate("D, d M Y H:i:s O", $this->unix);
         return $date;
@@ -75,9 +75,9 @@ class FeedDate {
     /**
      * Gets the date stored in this FeedDate as an ISO 8601 date.
      *
-     * @return a date in ISO 8601 format
+     * @return string a date in ISO 8601 format
      */
-    function iso8601() {
+    public function iso8601() {
         $date = gmdate("Y-m-d\TH:i:sO",$this->unix);
         $date = substr($date,0,22) . ':' . substr($date,-2);
         if (TIME_ZONE!="") $date = str_replace("+00:00",TIME_ZONE,$date);
@@ -87,9 +87,9 @@ class FeedDate {
     /**
      * Gets the date stored in this FeedDate as unix time stamp.
      *
-     * @return a date as a unix time stamp
+     * @return int a date as a unix time stamp
      */
-    function unix() {
+    public function unix() {
         return $this->unix;
     }
 }
