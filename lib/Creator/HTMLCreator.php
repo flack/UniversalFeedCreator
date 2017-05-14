@@ -70,6 +70,8 @@ class HTMLCreator extends FeedCreator {
         //set an openInNewWindow_token_to be inserted or not
         if ($this->openInNewWindow) {
             $targetInsert = " class='target_blank'";
+        } else {
+            $targetInsert = '';
         }
 
         // use this array to put the lines in and implode later with "document.write" javascript

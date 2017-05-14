@@ -58,6 +58,7 @@ class MBOXCreator extends FeedCreator {
      * @inheritdoc
      */
     public function createFeed() {
+        $feed = '';
         for ($i=0;$i<count($this->items);$i++) {
             if ($this->items[$i]->author!="") {
                 $from = $this->items[$i]->author;
