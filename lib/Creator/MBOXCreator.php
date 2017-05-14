@@ -30,7 +30,7 @@ class MBOXCreator extends FeedCreator {
         $eol = "\r\n";
         $escape = "=";
         $output = "";
-        while( list(, $line) = each($lines) ) {
+        foreach($lines as $line) {
             $linlen = strlen($line);
             $newline = "";
             for($i = 0; $i < $linlen; $i++) {
