@@ -48,4 +48,3 @@ class PIECreator01 extends FeedCreator {
         return $feed;
     }
 }
-?>

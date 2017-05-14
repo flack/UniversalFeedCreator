@@ -44,4 +44,3 @@ class PHPCreator extends FeedCreator {
         return $feed;
     }
 }
-?>

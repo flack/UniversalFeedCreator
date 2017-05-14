@@ -14,4 +14,3 @@ class RSSCreator20 extends RSSCreator091 {
     }
 
 }
-?>

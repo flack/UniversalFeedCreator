@@ -60,4 +60,3 @@ class OPMLCreator extends FeedCreator {
         return $feed;
     }
 }
-?>

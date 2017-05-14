@@ -246,4 +246,3 @@ abstract class FeedCreator extends HtmlDescribable {
         }
     }
 }
-?>

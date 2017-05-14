@@ -54,4 +54,3 @@ class FeedHtmlField {
         return $result;
     }
 }
-?>

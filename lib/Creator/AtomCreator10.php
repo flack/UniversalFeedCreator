@@ -150,4 +150,3 @@ class AtomCreator10 extends FeedCreator {
         return $feed;
     }
 }
-?>

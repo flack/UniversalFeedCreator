@@ -39,4 +39,3 @@ class GPXCreator extends FeedCreator {
         return $feed;
     }
 }
-?>

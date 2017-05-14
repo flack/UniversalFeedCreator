@@ -16,4 +16,3 @@ class FeedImage extends HtmlDescribable {
      */
     var $width, $height, $description;
 }
-?>

@@ -30,4 +30,3 @@ class HtmlDescribable {
         return $descriptionField->output();
     }
 }
-?>

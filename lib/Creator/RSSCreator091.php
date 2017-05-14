@@ -161,4 +161,3 @@ class RSSCreator091 extends FeedCreator {
         return $feed;
     }
 }
-?>

@@ -92,4 +92,3 @@ class KMLCreator extends FeedCreator {
          return substr($fileInfo["basename"],0,-(strlen($fileInfo["extension"])+1)).".kml";
     }
 }
-?>

@@ -151,4 +151,3 @@ class UniversalFeedCreator extends FeedCreator {
         $this->_feed->useCached($filename, $timeout);
     }
 }
-?>

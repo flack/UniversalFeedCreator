@@ -56,4 +56,3 @@ class FeedItem extends HtmlDescribable {
     // on hold
     // var $source;
 }
-?>
