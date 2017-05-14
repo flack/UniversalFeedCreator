@@ -23,7 +23,7 @@ class FeedHtmlField {
     /**
      * Creates a new instance of FeedHtmlField.
      * 
-     * @param  $string: if given, sets the rawFieldContent property
+     * @param  string $parFieldContent if given, sets the rawFieldContent property
      */
     public function __construct($parFieldContent) {
         if ($parFieldContent) {

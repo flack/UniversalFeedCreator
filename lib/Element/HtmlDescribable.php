@@ -19,7 +19,9 @@ class HtmlDescribable {
     /**
      * Returns a formatted description field, depending on descriptionHtmlSyndicated and
      * $descriptionTruncSize properties
-     * @return    string    the formatted description
+     *
+     * @param bool $overrideSyndicateHtml
+     * @return string the formatted description
      */
     function getDescription($overrideSyndicateHtml = false) {
         $descriptionField = new FeedHtmlField($this->description);

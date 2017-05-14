@@ -18,6 +18,7 @@ define("FEEDCREATOR_VERSION", "FeedCreator 1.8");
  * @package de.bitfolge.feedcreator
  */
 class UniversalFeedCreator extends FeedCreator {
+    /** @var  FeedCreator */
     var $_feed;
 
     function _setFormat($format) {
@@ -109,7 +110,7 @@ class UniversalFeedCreator extends FeedCreator {
      * Creates a syndication feed based on the items previously added.
      *
      * @see        FeedCreator::addItem()
-     * @param    string    format    format the feed should comply to. Valid values are:
+     * @param    string    $format    format the feed should comply to. Valid values are:
      *            "PIE0.1", "mbox", "RSS0.91", "RSS1.0", "RSS2.0", "OPML", "ATOM0.3", "HTML", "JS"
      * @return    string    the contents of the feed.
      */
@@ -123,10 +124,10 @@ class UniversalFeedCreator extends FeedCreator {
      * header may be sent to redirect the use to the newly created file.
      * @since 1.4
      *
-     * @param    string    format    format the feed should comply to. Valid values are:
+     * @param    string    $format    format the feed should comply to. Valid values are:
      *            "PIE0.1" (deprecated), "mbox", "RSS0.91", "RSS1.0", "RSS2.0", "OPML", "ATOM", "ATOM0.3", "HTML", "JS"
-     * @param    string    filename    optional    the filename where a recent version of the feed is saved. If not specified, the filename is $_SERVER["PHP_SELF"] with the extension changed to .xml (see _generateFilename()).
-     * @param    boolean    displayContents    optional    send the content of the file or not. If true, the file will be sent in the body of the response.
+     * @param    string    $filename    optional    the filename where a recent version of the feed is saved. If not specified, the filename is $_SERVER["PHP_SELF"] with the extension changed to .xml (see _generateFilename()).
+     * @param    boolean    $displayContents    optional    send the content of the file or not. If true, the file will be sent in the body of the response.
      */
     function saveFeed($format="RSS0.91", $filename="", $displayContents=true) {
         $this->_setFormat($format);
@@ -140,10 +141,10 @@ class UniversalFeedCreator extends FeedCreator {
      * before anything else, especially before you do the time consuming task to build the feed
      * (web fetching, for example).
      *
-     * @param   string   format   format the feed should comply to. Valid values are:
+     * @param   string   $format   format the feed should comply to. Valid values are:
      *       "PIE0.1" (deprecated), "mbox", "RSS0.91", "RSS1.0", "RSS2.0", "OPML", "ATOM0.3".
-     * @param filename   string   optional the filename where a recent version of the feed is saved. If not specified, the filename is $_SERVER["PHP_SELF"] with the extension changed to .xml (see _generateFilename()).
-     * @param timeout int      optional the timeout in seconds before a cached version is refreshed (defaults to 3600 = 1 hour)
+     * @param string $filename    optional the filename where a recent version of the feed is saved. If not specified, the filename is $_SERVER["PHP_SELF"] with the extension changed to .xml (see _generateFilename()).
+     * @param int $timeout      optional the timeout in seconds before a cached version is refreshed (defaults to 3600 = 1 hour)
      */
     function useCached($format="RSS0.91", $filename="", $timeout=3600) {
         $this->_setFormat($format);
