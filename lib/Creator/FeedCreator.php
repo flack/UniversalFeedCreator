@@ -203,7 +203,7 @@ abstract class FeedCreator extends HtmlDescribable {
         } else {
             header("Content-Disposition: inline; filename=".basename($filename));
         }
-        readfile($filename, "r");
+        readfile($filename);
         exit();
     }
 
