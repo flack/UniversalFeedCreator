@@ -1,6 +1,8 @@
 <?php
 // your local timezone, set to "" to disable or for GMT
-define("TIME_ZONE","");
+if(!defined('TIME_ZONE')) {
+    define("TIME_ZONE", date("O", time()));
+}
 
 /**
  * Version string.
