@@ -118,9 +118,11 @@ class RSSCreator091 extends FeedCreator {
             $feed.= "            <link>".htmlspecialchars($this->items[$i]->link)."</link>\n";
             $feed.= "            <description>".$this->items[$i]->getDescription()."</description>\n";
 
-            if ($this->items[$i]->author!="") {
-                $feed.= "            <author>".htmlspecialchars($this->items[$i]->author)."</author>\n";
+            $creator = $this->getAuthor($this->items[$i]->author, $this->items[$i]->authorEmail);
+            if ($creator) {
+                $feed .= "            <author>" . htmlspecialchars($creator) . "</author>\n";
             }
+
             /*
              // on hold
             if ($this->items[$i]->source!="") {
@@ -154,5 +156,17 @@ class RSSCreator091 extends FeedCreator {
         $feed.= "    </channel>\n";
         $feed.= "</rss>\n";
         return $feed;
+    }
+
+    /**
+     * Compose the RSS-0.91 and RSS-2.0 author field.
+     *
+     * @author Joe Lapp <joe.lapp@pobox.com>
+     */
+    function getAuthor($author, $email) {
+        if ($author && $email) {
+            return $email . ' (' . $author . ')';
+        }
+        return $email;
     }
 }

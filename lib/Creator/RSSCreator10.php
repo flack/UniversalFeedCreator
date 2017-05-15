@@ -66,8 +66,9 @@ class RSSCreator10 extends FeedCreator {
             if ($this->items[$i]->source!="") {
                 $feed.= "        <dc:source>".htmlspecialchars($this->items[$i]->source)."</dc:source>\n";
             }
-            if ($this->items[$i]->author!="") {
-                $feed.= "        <dc:creator>".htmlspecialchars($this->items[$i]->author)."</dc:creator>\n";
+            $creator = $this->getAuthor($this->items[$i]->author, $this->items[$i]->authorEmail);
+            if ($creator) {
+                $feed.= "        <dc:creator>".htmlspecialchars($creator)."</dc:creator>\n";
             }
             if ($this->items[$i]->lat!="") {
                 $feed.= "        <georss:point>".$this->items[$i]->lat." ".$this->items[$i]->long."</georss:point>\n";
@@ -83,5 +84,23 @@ class RSSCreator10 extends FeedCreator {
         }
         $feed.= "</rdf:RDF>\n";
         return $feed;
+    }
+
+    /**
+     * Compose the RSS-1.0 author field.
+     *
+     * @author Joe Lapp <joe.lapp@pobox.com>
+     * @param string $author
+     * @param string $email
+     * @return string
+     */
+    protected function getAuthor($author, $email) {
+        if ($author) {
+            if ($email) {
+                return $author . ' (' . $email . ')';
+            }
+            return $author;
+        }
+        return $email;
     }
 }
