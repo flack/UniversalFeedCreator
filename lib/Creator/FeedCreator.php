@@ -28,7 +28,7 @@ abstract class FeedCreator extends HtmlDescribable {
 
 
     /** @var FeedItem[] */
-    protected $items = Array();
+    public $items = Array();
 
     /**
      * Generator string
