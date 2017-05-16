@@ -1,5 +1,5 @@
 <?php
-class UniverslFeedCreatorTest extends PHPUnit_Framework_TestCase
+class UniversalFeedCreatorTest extends PHPUnit_Framework_TestCase
 {
     /**
      * @dataProvider provider_createFeed
@@ -47,4 +47,3 @@ class UniverslFeedCreatorTest extends PHPUnit_Framework_TestCase
         );
     }
 }
-?>
