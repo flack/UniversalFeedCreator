@@ -10,9 +10,10 @@ php:
     - "nightly"
     - "hhvm"
 
-allow_failures:
-    - php: "hhvm"
-    - php: "nightly"
+matrix:
+    allow_failures:
+      - php: "hhvm"
+      - php: "nightly"
 
 before_script:
    composer install
