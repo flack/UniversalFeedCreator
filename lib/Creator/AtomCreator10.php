@@ -18,12 +18,16 @@
  */
 class AtomCreator10 extends FeedCreator {
 
-    function __construct() {
+    /**
+     * AtomCreator10 constructor.
+     */
+    public function __construct() {
         $this->contentType = "application/atom+xml";
         $this->encoding = "utf-8";
     }
 
-    function createFeed() {
+    /** @inheritdoc */
+    public function createFeed() {
         $feed = "<?xml version=\"1.0\" encoding=\"".$this->encoding."\"?>\n";
         $feed.= $this->_createGeneratorComment();
         $feed.= $this->_createStylesheetReferences();
@@ -150,4 +154,3 @@ class AtomCreator10 extends FeedCreator {
         return $feed;
     }
 }
-?>

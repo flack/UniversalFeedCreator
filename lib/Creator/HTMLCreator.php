@@ -13,36 +13,35 @@
  */
 class HTMLCreator extends FeedCreator {
 
-    var $contentType = "text/html";
+    protected $contentType = "text/html";
 
     /**
      * Contains HTML to be output at the start of the feed's html representation.
      */
-    var $header;
+    public $header;
 
     /**
      * Contains HTML to be output at the end of the feed's html representation.
      */
-    var $footer ;
+    public $footer ;
 
     /**
      * Contains HTML to be output between entries. A separator is only used in
      * case of multiple entries.
      */
-    var $separator;
+    public $separator;
 
     /**
      * Used to prefix the stylenames to make sure they are unique
      * and do not clash with stylenames on the user's page.
      */
-    var $stylePrefix;
+    public $stylePrefix;
 
-    /**
-     * Determines whether the links open in a new window or not.
-     */
-    var $openInNewWindow = true;
+    /** @var bool Determines whether the links open in a new window or not. */
+    public $openInNewWindow = true;
 
-    var $imageAlign ="right";
+    /** @var string image alignments in output */
+    public $imageAlign ="right";
 
     /**
      * In case of very simple output you may want to get rid of the style tags,
@@ -51,13 +50,13 @@ class HTMLCreator extends FeedCreator {
      * and when it is non-empty, ONLY the styleless output is printed, the rest is ignored
      * in the function createFeed().
      */
-    var $stylelessOutput ="";
+    public $stylelessOutput ="";
 
     /**
      * Writes the HTML.
-     * @return    string    the scripts's complete text
+     * @inheritdoc
      */
-    function createFeed() {
+    public function createFeed() {
         // if there is styleless output, use the content of this variable and ignore the rest
         if ($this->stylelessOutput!="") {
             return $this->stylelessOutput;
@@ -71,6 +70,8 @@ class HTMLCreator extends FeedCreator {
         //set an openInNewWindow_token_to be inserted or not
         if ($this->openInNewWindow) {
             $targetInsert = " class='target_blank'";
+        } else {
+            $targetInsert = '';
         }
 
         // use this array to put the lines in and implode later with "document.write" javascript
@@ -144,9 +145,8 @@ class HTMLCreator extends FeedCreator {
      * @since 1.4
      * @access private
      */
-    function _generateFilename() {
+    protected function _generateFilename() {
         $fileInfo = pathinfo($_SERVER["PHP_SELF"]);
         return substr($fileInfo["basename"],0,-(strlen($fileInfo["extension"])+1)).".html";
     }
 }
-?>

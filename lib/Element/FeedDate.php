@@ -6,7 +6,7 @@
  * @package de.bitfolge.feedcreator
  */
 class FeedDate {
-    var $unix;
+    protected $unix;
 
     /**
      * Creates a new instance of FeedDate representing a given date.
@@ -14,18 +14,19 @@ class FeedDate {
      *
      * @param mixed $dateString optional the date this FeedDate will represent. If not specified, the current date and time is used.
      */
-    function __construct($dateString="") {
+    public function __construct($dateString="") {
         if ($dateString=="") $dateString = date("r");
 
         if (is_integer($dateString)) {
             $this->unix = $dateString;
             return;
         }
+        $tzOffset = 0;
         if (preg_match("~(?:(?:Mon|Tue|Wed|Thu|Fri|Sat|Sun),\\s+)?(\\d{1,2})\\s+([a-zA-Z]{3})\\s+(\\d{4})\\s+(\\d{2}):(\\d{2}):(\\d{2})\\s+(.*)~",$dateString,$matches)) {
             $months = Array("Jan"=>1,"Feb"=>2,"Mar"=>3,"Apr"=>4,"May"=>5,"Jun"=>6,"Jul"=>7,"Aug"=>8,"Sep"=>9,"Oct"=>10,"Nov"=>11,"Dec"=>12);
             $this->unix = mktime($matches[4],$matches[5],$matches[6],$months[$matches[2]],$matches[1],$matches[3]);
             if (substr($matches[7],0,1)=='+' OR substr($matches[7],0,1)=='-') {
-                $tzOffset = (substr($matches[7],0,3) * 60 + substr($matches[7],-2)) * 60;
+                $tzOffset = (((int)substr($matches[7], 0, 3) * 60) + (int)substr($matches[7], -2)) * 60;
             } else {
                 if (strlen($matches[7])==1) {
                     $oneHour = 3600;
@@ -49,7 +50,7 @@ class FeedDate {
         if (preg_match("~(\\d{4})-(\\d{2})-(\\d{2})T(\\d{2}):(\\d{2}):(\\d{2})(.*)~",$dateString,$matches)) {
             $this->unix = mktime($matches[4],$matches[5],$matches[6],$matches[2],$matches[3],$matches[1]);
             if (substr($matches[7],0,1)=='+' OR substr($matches[7],0,1)=='-') {
-                $tzOffset = (substr($matches[7],0,3) * 60 + substr($matches[7],-2)) * 60;
+                $tzOffset = (((int) substr($matches[7],0,3) * 60) + (int)substr($matches[7], -2)) * 60;
             } else {
                 if ($matches[7]=="Z") {
                     $tzOffset = 0;
@@ -64,9 +65,9 @@ class FeedDate {
     /**
      * Gets the date stored in this FeedDate as an RFC 822 date.
      *
-     * @return a date in RFC 822 format
+     * @return string a date in RFC 822 format
      */
-    function rfc822() {
+    public function rfc822() {
         //return gmdate("r",$this->unix);
         $date = gmdate("D, d M Y H:i:s O", $this->unix);
         return $date;
@@ -75,9 +76,9 @@ class FeedDate {
     /**
      * Gets the date stored in this FeedDate as an ISO 8601 date.
      *
-     * @return a date in ISO 8601 format
+     * @return string a date in ISO 8601 format
      */
-    function iso8601() {
+    public function iso8601() {
         $date = gmdate("Y-m-d\TH:i:sO",$this->unix);
         $date = substr($date,0,22) . ':' . substr($date,-2);
         if (TIME_ZONE!="") $date = str_replace("+00:00",TIME_ZONE,$date);
@@ -87,10 +88,9 @@ class FeedDate {
     /**
      * Gets the date stored in this FeedDate as unix time stamp.
      *
-     * @return a date as a unix time stamp
+     * @return int a date as a unix time stamp
      */
-    function unix() {
+    public function unix() {
         return $this->unix;
     }
 }
-?>

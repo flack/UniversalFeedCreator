@@ -9,13 +9,12 @@
  */
 class RSSCreator091 extends FeedCreator {
 
-    /**
-     * Stores this RSS feed's version number.
-     *
-     * @access private
-     */
-    var $RSSVersion;
+    /** @var string Stores this RSS feed's version number. */
+    protected $RSSVersion;
 
+    /**
+     * RSSCreator091 constructor.
+     */
     function __construct() {
         $this->_setRSSVersion("0.91");
         $this->contentType = "application/rss+xml";
@@ -23,20 +22,14 @@ class RSSCreator091 extends FeedCreator {
 
     /**
      * Sets this RSS feed's version number.
-     *
-     * @access private
+     * @param string $version
      */
-    function _setRSSVersion($version) {
+    protected function _setRSSVersion($version) {
         $this->RSSVersion = $version;
     }
 
-    /**
-     * Builds the RSS feed's text. The feed will be compliant to RDF Site Summary (RSS) 1.0.
-     * The feed will contain all items previously added in the same order.
-     *
-     * @return    string    the feed's complete text
-     */
-    function createFeed() {
+    /** @inheritdoc */
+    public function createFeed() {
         $feed = "<?xml version=\"1.0\" encoding=\"".$this->encoding."\"?>\n";
         $feed.= $this->_createGeneratorComment();
         $feed.= $this->_createStylesheetReferences();
@@ -78,7 +71,7 @@ class RSSCreator091 extends FeedCreator {
                 $feed.= "            <height>".$this->image->height."</height>\n";
             }
             if ($this->image->description!="") {
-                $feed.= "            <description>".$this->image->getDescription()."</description>\n";
+                $feed.= "            <description>".htmlspecialchars($this->image->description)."</description>\n";
             }
             $feed.= "        </image>\n";
         }
@@ -125,9 +118,11 @@ class RSSCreator091 extends FeedCreator {
             $feed.= "            <link>".htmlspecialchars($this->items[$i]->link)."</link>\n";
             $feed.= "            <description>".$this->items[$i]->getDescription()."</description>\n";
 
-            if ($this->items[$i]->author!="") {
-                $feed.= "            <author>".htmlspecialchars($this->items[$i]->author)."</author>\n";
+            $creator = $this->getAuthor($this->items[$i]->author, $this->items[$i]->authorEmail);
+            if ($creator) {
+                $feed .= "            <author>" . htmlspecialchars($creator) . "</author>\n";
             }
+
             /*
              // on hold
             if ($this->items[$i]->source!="") {
@@ -137,8 +132,10 @@ class RSSCreator091 extends FeedCreator {
             if ($this->items[$i]->lat!="") {
                 $feed.= "            <georss:point>".$this->items[$i]->lat." ".$this->items[$i]->long."</georss:point>\n";
             }
-            if ($this->items[$i]->category!="") {
-                $feed.= "            <category>".htmlspecialchars($this->items[$i]->category)."</category>\n";
+            if(is_array($this->items[$i]->category)) foreach($this->items[$i]->category as $cat){
+                $feed.= "        <category>".htmlspecialchars($cat)."</category>\n";
+            }else if($this->items[$i]->category!=""){
+                $feed.= "        <category>".htmlspecialchars($this->items[$i]->category)."</category>\n";
             }
             if ($this->items[$i]->comments!="") {
                 $feed.= "            <comments>".htmlspecialchars($this->items[$i]->comments)."</comments>\n";
@@ -160,5 +157,16 @@ class RSSCreator091 extends FeedCreator {
         $feed.= "</rss>\n";
         return $feed;
     }
+
+    /**
+     * Compose the RSS-0.91 and RSS-2.0 author field.
+     *
+     * @author Joe Lapp <joe.lapp@pobox.com>
+     */
+    function getAuthor($author, $email) {
+        if ($author && $email) {
+            return $email . ' (' . $author . ')';
+        }
+        return $email;
+    }
 }
-?>

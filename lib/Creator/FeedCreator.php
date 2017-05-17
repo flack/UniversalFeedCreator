@@ -12,44 +12,41 @@ abstract class FeedCreator extends HtmlDescribable {
     /**
      * Mandatory attributes of a feed.
      */
-    var $title, $description, $link;
-    var $format = 'BASE';
+    public $title, $description, $link;
+    public $format = 'BASE';
 
     /**
      * Optional attributes of a feed.
      */
-    var $syndicationURL, $image, $language, $copyright, $pubDate, $lastBuildDate, $editor, $editorEmail, $webmaster, $category, $docs, $ttl, $rating, $skipHours, $skipDays;
+    public $syndicationURL, $image, $language, $copyright, $pubDate, $lastBuildDate, $editor, $editorEmail, $webmaster, $category, $docs, $ttl, $rating, $skipHours, $skipDays;
 
     /**
      * The url of the external xsl stylesheet used to format the naked rss feed.
      * Ignored in the output when empty.
      */
-    var $xslStyleSheet = "";
+    public $xslStyleSheet = "";
 
 
-    /**
-     * @access private
-     */
-    var $items = Array();
+    /** @var FeedItem[] */
+    public $items = Array();
 
     /**
      * Generator string
-     *
      */
-    var $generator = "info@mypapit.net";
+    public $generator = "info@mypapit.net";
 
     /**
      * This feed's MIME content type.
      * @since 1.4
      * @access private
      */
-    var $contentType = "application/xml";
+    protected $contentType = "application/xml";
 
     /**
      * This feed's character encoding.
      * @since 1.6.1
      */
-    var $encoding = "UTF-8"; //"ISO-8859-1";
+    protected $encoding = "UTF-8"; //"ISO-8859-1";
 
     /**
      * Any additional elements to include as an associated array. All $key => $value pairs
@@ -59,19 +56,24 @@ abstract class FeedCreator extends HtmlDescribable {
      * if $value contains markup. This may be abused to embed tags not implemented by
      * the FeedCreator class used.
      */
-    var $additionalElements = Array();
+    public $additionalElements = Array();
 
     /**
      * Adds a FeedItem to the feed.
      *
-     * @param object FeedItem $item The FeedItem to add to the feed.
+     * @param FeedItem $item The FeedItem to add to the feed.
      */
     public function addItem($item)
     {
         $this->items[] = $item;
     }
 
-    function version()
+    /**
+     * Get the version string for the generator
+     *
+     * @return string
+     */
+    public function version()
     {
         return FEEDCREATOR_VERSION." (".$this->generator.")";
     }
@@ -83,8 +85,8 @@ abstract class FeedCreator extends HtmlDescribable {
      * If the string is truncated, " ..." is appended.
      * If the string is already shorter than $length, it is returned unchanged.
      *
-     * @param string    string A string to be truncated.
-     * @param int        length the maximum length the string should be truncated to
+     * @param string    $string A string to be truncated.
+     * @param int        $length the maximum length the string should be truncated to
      * @return string    the truncated string
      */
     public static function iTrunc($string, $length) {
@@ -119,18 +121,18 @@ abstract class FeedCreator extends HtmlDescribable {
      * The format of this comment seems to be recognized by
      * Syndic8.com.
      */
-    function _createGeneratorComment() {
+    protected function _createGeneratorComment() {
         return "<!-- generator=\"".FEEDCREATOR_VERSION."\" -->\n";
     }
 
     /**
      * Creates a string containing all additional elements specified in
      * $additionalElements.
-     * @param    elements    array    an associative array containing key => value pairs
-     * @param indentString    string    a string that will be inserted before every generated line
+     * @param array $elements   an associative array containing key => value pairs
+     * @param string $indentString   a string that will be inserted before every generated line
      * @return    string    the XML tags corresponding to $additionalElements
      */
-    function _createAdditionalElements($elements, $indentString="") {
+    protected function _createAdditionalElements($elements, $indentString="") {
         $ae = "";
         if (is_array($elements)) {
             foreach($elements AS $key => $value) {
@@ -140,7 +142,7 @@ abstract class FeedCreator extends HtmlDescribable {
         return $ae;
     }
 
-    function _createStylesheetReferences() {
+    protected function _createStylesheetReferences() {
         $xml = "";
         if (!empty($this->cssStyleSheet)) $xml .= "<?xml-stylesheet href=\"".$this->cssStyleSheet."\" type=\"text/css\"?>\n";
         if (!empty($this->xslStyleSheet)) $xml .= "<?xml-stylesheet href=\"".$this->xslStyleSheet."\" type=\"text/xsl\"?>\n";
@@ -152,7 +154,7 @@ abstract class FeedCreator extends HtmlDescribable {
      *
      * @return    string    the feed's complete text
      */
-    abstract function createFeed();
+    abstract public function createFeed();
 
     /**
      * Generate a filename for the feed cache file. The result will be $_SERVER["PHP_SELF"] with the extension changed to .xml.
@@ -170,15 +172,18 @@ abstract class FeedCreator extends HtmlDescribable {
      * @since 1.4
      * @access private
      */
-    function _generateFilename() {
+    protected function _generateFilename() {
         $fileInfo = pathinfo($_SERVER["PHP_SELF"]);
         return substr($fileInfo["basename"],0,-(strlen($fileInfo["extension"])+1)).".xml";
     }
 
     /**
+     * Send given file to Browser
+     *
      * @since 1.4
+     * @param string $filename
      */
-    private function _redirect($filename) {
+    protected function _redirect($filename) {
         // attention, heavily-commented-out-area
 
         // maybe use this in addition to file time checking
@@ -193,12 +198,12 @@ abstract class FeedCreator extends HtmlDescribable {
         //header("Location: ".$filename);
 
         header("Content-Type: ".$this->contentType."; charset=".$this->encoding."; filename=".basename($filename));
-        if (preg_match("/\.(kml|gpx)$/",$filename)) {
+        if (preg_match('/\.(kml|gpx)$/',$filename)) {
             header("Content-Disposition: attachment; filename=".basename($filename));
         } else {
             header("Content-Disposition: inline; filename=".basename($filename));
         }
-        readfile($filename, "r");
+        readfile($filename);
         exit();
     }
 
@@ -209,10 +214,10 @@ abstract class FeedCreator extends HtmlDescribable {
      * before anything else, especially before you do the time consuming task to build the feed
      * (web fetching, for example).
      * @since 1.4
-     * @param filename    string    optional    the filename where a recent version of the feed is saved. If not specified, the filename is $_SERVER["PHP_SELF"] with the extension changed to .xml (see _generateFilename()).
-     * @param timeout    int        optional    the timeout in seconds before a cached version is refreshed (defaults to 3600 = 1 hour)
+     * @param string $filename   optional    the filename where a recent version of the feed is saved. If not specified, the filename is $_SERVER["PHP_SELF"] with the extension changed to .xml (see _generateFilename()).
+     * @param int    $timeout    optional    the timeout in seconds before a cached version is refreshed (defaults to 3600 = 1 hour)
      */
-    function useCached($filename="", $timeout=3600) {
+    public function useCached($filename="", $timeout=3600) {
         $this->_timeout = $timeout;
         if ($filename=="") {
             $filename = $this->_generateFilename();
@@ -227,10 +232,10 @@ abstract class FeedCreator extends HtmlDescribable {
      * header may be sent to redirect the user to the newly created file.
      * @since 1.4
      *
-     * @param filename    string    optional    the filename where a recent version of the feed is saved. If not specified, the filename is $_SERVER["PHP_SELF"] with the extension changed to .xml (see _generateFilename()).
-     * @param redirect    boolean    optional    send an HTTP redirect header or not. If true, the user will be automatically redirected to the created file.
+     * @param string $filename   optional    the filename where a recent version of the feed is saved. If not specified, the filename is $_SERVER["PHP_SELF"] with the extension changed to .xml (see _generateFilename()).
+     * @param bool   $displayContents   optional    send an HTTP redirect header or not. If true, the user will be automatically redirected to the created file.
      */
-    function saveFeed($filename="", $displayContents=true) {
+    public function saveFeed($filename="", $displayContents=true) {
         if ($filename=="") {
             $filename = $this->_generateFilename();
         }
@@ -246,4 +251,3 @@ abstract class FeedCreator extends HtmlDescribable {
         }
     }
 }
-?>

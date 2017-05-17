@@ -9,9 +9,12 @@
  */
 class RSSCreator20 extends RSSCreator091 {
 
-    function __construct() {
+    /**
+     * RSSCreator20 constructor.
+     */
+    public function __construct() {
+        parent::__construct();
         parent::_setRSSVersion("2.0");
     }
 
 }
-?>

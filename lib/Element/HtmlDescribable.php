@@ -9,23 +9,27 @@ class HtmlDescribable {
     /**
      * Indicates whether the description field should be rendered in HTML.
      */
-    var $descriptionHtmlSyndicated;
+    public $descriptionHtmlSyndicated;
 
     /**
      * Indicates whether and to how many characters a description should be truncated.
      */
-    var $descriptionTruncSize;
+    public $descriptionTruncSize;
+
+    /** @var string the Description */
+    public $description;
 
     /**
      * Returns a formatted description field, depending on descriptionHtmlSyndicated and
      * $descriptionTruncSize properties
-     * @return    string    the formatted description
+     *
+     * @param bool $overrideSyndicateHtml
+     * @return string the formatted description
      */
-    function getDescription($overrideSyndicateHtml = false) {
+    public function getDescription($overrideSyndicateHtml = false) {
         $descriptionField = new FeedHtmlField($this->description);
         $descriptionField->syndicateHtml = $overrideSyndicateHtml || $this->descriptionHtmlSyndicated;
         $descriptionField->truncSize = $this->descriptionTruncSize;
         return $descriptionField->output();
     }
 }
-?>

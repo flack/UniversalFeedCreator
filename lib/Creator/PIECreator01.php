@@ -10,11 +10,15 @@
  */
 class PIECreator01 extends FeedCreator {
 
-    function __construct() {
+    /**
+     * PIECreator01 constructor.
+     */
+    public function __construct() {
         $this->encoding = "utf-8";
     }
 
-    function createFeed() {
+    /** @inheritdoc */
+    public function createFeed() {
         $feed = "<?xml version=\"1.0\" encoding=\"".$this->encoding."\"?>\n";
         $feed.= $this->_createStylesheetReferences();
         $feed.= "<feed version=\"0.1\" xmlns=\"http://example.com/newformat#\">\n";
@@ -48,4 +52,3 @@ class PIECreator01 extends FeedCreator {
         return $feed;
     }
 }
-?>

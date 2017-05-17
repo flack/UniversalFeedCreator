@@ -12,18 +12,18 @@ class FeedHtmlField {
     /**
      * Mandatory attributes of a FeedHtmlField.
      */
-    var $rawFieldContent;
+    protected $rawFieldContent;
 
     /**
      * Optional attributes of a FeedHtmlField.
      *
      */
-    var $truncSize, $syndicateHtml;
+    public $truncSize, $syndicateHtml;
 
     /**
      * Creates a new instance of FeedHtmlField.
      * 
-     * @param  $string: if given, sets the rawFieldContent property
+     * @param  string $parFieldContent if given, sets the rawFieldContent property
      */
     public function __construct($parFieldContent) {
         if ($parFieldContent) {
@@ -54,4 +54,3 @@ class FeedHtmlField {
         return $result;
     }
 }
-?>

@@ -8,12 +8,16 @@
  */
 class KMLCreator extends FeedCreator {
 
-    function __construct() {
+    /**
+     * KMLCreator constructor.
+     */
+    public function __construct() {
         $this->contentType = "application/vnd.google-earth.kml+xml";
         $this->encoding = "utf-8";
     }
 
-    function createFeed() {
+    /** @inheritdoc */
+    public function createFeed() {
         $feed = "<?xml version=\"1.0\" encoding=\"".$this->encoding."\"?>\n";
         $feed.= $this->_createStylesheetReferences();
         $feed.= "<kml xmlns=\"http://earth.google.com/kml/2.0\">\n";
@@ -87,9 +91,8 @@ class KMLCreator extends FeedCreator {
      * @since 1.4
      * @access private
      */
-     function _generateFilename() {
+     protected function _generateFilename() {
          $fileInfo = pathinfo($_SERVER["PHP_SELF"]);
          return substr($fileInfo["basename"],0,-(strlen($fileInfo["extension"])+1)).".kml";
     }
 }
-?>

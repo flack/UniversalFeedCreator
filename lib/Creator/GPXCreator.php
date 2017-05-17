@@ -8,12 +8,16 @@
  */
 class GPXCreator extends FeedCreator {
 
-    function __construct() {
+    /**
+     * GPXCreator constructor.
+     */
+    public function __construct() {
         $this->contentType = "text/xml";
         $this->encoding = "utf-8";
     }
 
-    function createFeed() {
+    /** @inheritdoc */
+    public function createFeed() {
         $feed = "<?xml version=\"1.0\" encoding=\"".$this->encoding."\"?>\n";
         $feed.= $this->_createStylesheetReferences();
         $feed.= "<gpx xmlns:xsd=\"http://www.w3.org/2001/XMLSchema\" xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\" version=\"1.0\"
@@ -39,4 +43,3 @@ class GPXCreator extends FeedCreator {
         return $feed;
     }
 }
-?>

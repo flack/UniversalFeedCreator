@@ -9,11 +9,10 @@ class FeedImage extends HtmlDescribable {
     /**
      * Mandatory attributes of an image.
      */
-    var $title, $url, $link;
+    public $title, $url, $link;
 
     /**
      * Optional attributes of an image.
      */
-    var $width, $height, $description;
+    public $width, $height, $description;
 }
-?>
