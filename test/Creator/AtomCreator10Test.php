@@ -1,4 +1,5 @@
 <?php
+
 class AtomCreator10Test extends PHPUnit_Framework_TestCase
 {
     public function test_create_empty_feed()

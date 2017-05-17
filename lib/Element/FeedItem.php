@@ -1,12 +1,14 @@
 <?php
+
 /**
  * A FeedItem is a part of a FeedCreator feed.
  *
- * @author Kai Blankenhorn <kaib@bitfolge.de>
- * @since 1.3
+ * @author  Kai Blankenhorn <kaib@bitfolge.de>
+ * @since   1.3
  * @package de.bitfolge.feedcreator
  */
-class FeedItem extends HtmlDescribable {
+class FeedItem extends HtmlDescribable
+{
     /**
      * Mandatory attributes of an item.
      */
@@ -15,18 +17,15 @@ class FeedItem extends HtmlDescribable {
     /**
      * Optional attributes of an item.
      */
-    public $author, $authorEmail, $authorURL,$image, $category, $categoryScheme, $comments, $guid, $source, $creator, $contributor, $lat, $long, $thumb;
+    public $author, $authorEmail, $authorURL, $image, $category, $categoryScheme, $comments, $guid, $source, $creator, $contributor, $lat, $long, $thumb;
 
     /**
      * Publishing date of an item. May be in one of the following formats:
-     *
      *    RFC 822:
      *    "Mon, 20 Jan 03 18:05:41 +0400"
      *    "20 Jan 03 18:05:41 +0000"
-     *
      *    ISO 8601:
      *    "2003-01-20T18:05:41+04:00"
-     *
      *    Unix:
      *    1043082341
      */
@@ -35,11 +34,8 @@ class FeedItem extends HtmlDescribable {
     /**
      * Add <enclosure> element tag RSS 2.0, supported by ATOM 1.0 too
      * modified by : Mohammad Hafiz bin Ismail (mypapit@gmail.com)
-     *
-     *
      * display :
      * <enclosure length="17691" url="http://something.com/picture.jpg" type="image/jpeg" />
-     *
      */
     public $enclosure;
 
