@@ -1,12 +1,11 @@
 <?php
 /**
  * PHP Unit bootstrapping
- *
  * the used phpunit version depends on the available PHP version, newer versions are namespaced
  * whiler older ones are not.
  */
 
-require dirname(__DIR__) . '/vendor/autoload.php';
+require dirname(__DIR__).'/vendor/autoload.php';
 
 if (
     !class_exists('\PHPUnit_Framework_TestCase')

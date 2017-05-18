@@ -1,4 +1,5 @@
 <?php
+
 class UniversalFeedCreatorTest extends PHPUnit_Framework_TestCase
 {
     /**
@@ -10,7 +11,7 @@ class UniversalFeedCreatorTest extends PHPUnit_Framework_TestCase
         $creator->addItem(new FeedItem());
         $feed = $creator->createFeed($format);
 
-        $expected = simplexml_load_file(__DIR__ . DIRECTORY_SEPARATOR . '__files'  . DIRECTORY_SEPARATOR . $expected);
+        $expected = simplexml_load_file(__DIR__.DIRECTORY_SEPARATOR.'__files'.DIRECTORY_SEPARATOR.$expected);
         $actual = simplexml_load_string($feed);
         $this->assertEquals($expected->getName(), $actual->getName());
         $this->assertEquals($expected->attributes(), $actual->attributes());
@@ -28,7 +29,7 @@ class UniversalFeedCreatorTest extends PHPUnit_Framework_TestCase
         $creator->addItem(new FeedItem());
         $feed = $creator->createFeed('RSS2.0');
 
-        $expected = simplexml_load_file(__DIR__ . DIRECTORY_SEPARATOR . '__files'  . DIRECTORY_SEPARATOR . 'rss091.xml');
+        $expected = simplexml_load_file(__DIR__.DIRECTORY_SEPARATOR.'__files'.DIRECTORY_SEPARATOR.'rss091.xml');
         $actual = simplexml_load_string($feed);
         $this->assertEquals($expected->channel->description, $actual->channel->description);
     }
