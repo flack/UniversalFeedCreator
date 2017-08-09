@@ -109,11 +109,7 @@ class FeedDate
      */
     public function iso8601()
     {
-        $date = gmdate("Y-m-d\TH:i:sO", $this->unix);
-        $date = substr($date, 0, 22).':'.substr($date, -2);
-        if (TIME_ZONE != "") {
-            $date = str_replace("+00:00", TIME_ZONE, $date);
-        }
+        $date = gmdate("Y-m-d\TH:i:sP", $this->unix);
 
         return $date;
     }
