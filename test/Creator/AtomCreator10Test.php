@@ -6,6 +6,11 @@ class AtomCreator10Test extends PHPUnit_Framework_TestCase
     {
         $creator = new UniversalFeedCreator;
         $creator->description = 'Feed Description';
+        $item = new FeedItem();
+        $item->date = time();
+        $item->category = array('1', '2');
+        $creator->addItem($item);
+
         $feed = $creator->createFeed('ATOM1.0');
 
         $parsed = simplexml_load_string($feed);
