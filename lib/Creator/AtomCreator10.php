@@ -14,7 +14,6 @@
  * @see     FeedCreator#additionalElements
  * @since   1.7.2-mod (modified)
  * @author  Mohammad Hafiz Ismail (mypapit@gmail.com)
- * @package de.bitfolge.feedcreator
  */
 class AtomCreator10 extends FeedCreator
 {

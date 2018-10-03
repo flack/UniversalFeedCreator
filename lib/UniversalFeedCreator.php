@@ -17,7 +17,6 @@ define("FEEDCREATOR_VERSION", "FeedCreator 1.8");
  *
  * @since   1.3
  * @author  Kai Blankenhorn <kaib@bitfolge.de>
- * @package de.bitfolge.feedcreator
  */
 class UniversalFeedCreator extends FeedCreator
 {

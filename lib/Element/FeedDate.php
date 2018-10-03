@@ -3,8 +3,6 @@
 /**
  * FeedDate is an internal class that stores a date for a feed or feed item.
  * Usually, you won't need to use this.
- *
- * @package de.bitfolge.feedcreator
  */
 class FeedDate
 {
