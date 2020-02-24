@@ -128,7 +128,7 @@ class RSSCreator091 extends FeedCreator
         $feed .= $this->_createAdditionalElements($this->additionalElements, "    ");
 
         for ($i = 0; $i < count($this->items); $i++) {
-            $feed .= "        <item>\n";
+            $feed .= "        <item turbo=\"true\">\n";
             $feed .= "            <title>".FeedCreator::iTrunc(
                     htmlspecialchars(strip_tags($this->items[$i]->title)),
                     100
