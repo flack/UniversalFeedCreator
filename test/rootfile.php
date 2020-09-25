@@ -13,5 +13,7 @@ if (
 ) {
     class_alias('\PHPUnit\Framework\TestCase', '\PHPUnit_Framework_TestCase');
     class_alias('\PHPUnit\Framework\Constraint\IsEqual', '\PHPUnit_Framework_Constraint_IsEqual');
-    class_alias('\PHPUnit\Util\InvalidArgumentHelper', '\PHPUnit_Util_InvalidArgumentHelper');
+    if (class_exists('\PHPUnit\Util\InvalidArgumentHelper')) {
+        class_alias('\PHPUnit\Util\InvalidArgumentHelper', '\PHPUnit_Util_InvalidArgumentHelper');
+    }
 }
