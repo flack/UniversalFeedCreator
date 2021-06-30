@@ -11,8 +11,19 @@ jobs:
 
     runs-on: ubuntu-latest
 
+    strategy:
+      matrix:
+        php-versions: ['7.0', '7.1', '7.2', '7.3', '7.4', '8.0']
+      fail-fast: false
+
     steps:
     - uses: actions/checkout@v2
+
+    - name: Setup PHP
+      uses: shivammathur/setup-php@v2
+      with:
+        coverage: "none"
+        php-version: "${{ matrix.php-versions }}"
 
     - name: Validate composer.json and composer.lock
       run: composer validate --strict
@@ -24,7 +35,7 @@ jobs:
         path: vendor
         key: ${{ runner.os }}-php-${{ hashFiles('**/composer.lock') }}
         restore-keys: |
-          ${{ runner.os }}-php-
+          ${{ runner.os }}-php-${{ matrix.php-versions }}
 
     - name: Install dependencies
       run: composer install --prefer-dist --no-progress
