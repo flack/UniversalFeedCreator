@@ -21,7 +21,7 @@ $rss->descriptionTruncSize = 500;
 $rss->descriptionHtmlSyndicated = true;
 
 $rss->link = "http://www.dailyphp.net/news";
-$rss->syndicationURL = "http://www.dailyphp.net/" . $_SERVER["PHP_SELF"];
+$rss->syndicationURL = "http://www.dailyphp.net/" . $_SERVER["SCRIPT_NAME"];
 
 $image = new FeedImage();
 $image->title = "dailyphp.net logo";
