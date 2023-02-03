@@ -19,6 +19,6 @@
         "files": ["lib/constants.php"]
     },
     "require-dev": {
-        "phpunit/phpunit": "*"
+        "phpunit/phpunit": "^6.5.14 || ^7.5.20 || ^8.5.32 || ^9.5.10"
     }
 }

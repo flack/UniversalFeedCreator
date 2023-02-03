@@ -34,7 +34,7 @@ class UniversalFeedCreatorTest extends PHPUnit_Framework_TestCase
         $this->assertEquals($expected->channel->description, $actual->channel->description);
     }
 
-    public function provider_createFeed()
+    public static function provider_createFeed()
     {
         return array
         (
