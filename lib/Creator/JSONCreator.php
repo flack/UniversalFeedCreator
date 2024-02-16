@@ -1,9 +1,14 @@
 <?php
 
-
+/**
+ * JSONCreator is a FeedCreator that implements the JSON Feed specification,
+ * as in https://jsonfeed.org/version/1.1
+ *
+ * @author Andreas Gohr <andi@splitbrain.org>
+ */
 class JSONCreator extends FeedCreator
 {
-
+    /** @inheritdoc */
     public function createFeed()
     {
         $data = array();
@@ -42,7 +47,7 @@ class JSONCreator extends FeedCreator
             if ($item->category) {
                 $entry['tags'] = (array)$item->category;
             }
-            if($item->enclosure) {
+            if ($item->enclosure) {
                 // We only support one enclosure, JSONFeed 1.1 accepts multiple
                 $entry['attachments'] = array(
                     array(
@@ -56,6 +61,6 @@ class JSONCreator extends FeedCreator
             $data['items'][] = $entry;
         }
 
-        return json_encode($data, JSON_PRETTY_PRINT);
+        return json_encode($data);
     }
 }
